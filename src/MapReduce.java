@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-/*
-Buck loves vagina
- */
 
 public class MapReduce {
     private static Scanner x;
