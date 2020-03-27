@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="167a70bf-eaab-447b-8296-2e1c4d41d42c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MapReduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapReduce.java" afterDir="false" />
-    </list>
+    <list default="true" id="167a70bf-eaab-447b-8296-2e1c4d41d42c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +108,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585318943514</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated">
+      <created>1585329087907</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585329087907</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated">
+      <created>1585329228293</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585329228293</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,11 +154,11 @@
     </state>
     <state x="531" y="252" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1585313902275" />
     <state x="746" y="360" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585315244578" />
-    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2" timestamp="1585329087402">
+    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2" timestamp="1585329304085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="261" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585314813607" />
-    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585329087402" />
+    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585329304085" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1585314302556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -192,11 +203,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1585314203992" />
-    <state x="387" y="137" key="Vcs.Push.Dialog.v2" timestamp="1585319279897">
+    <state x="387" y="137" key="Vcs.Push.Dialog.v2" timestamp="1585329247489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1585314854084" />
-    <state x="387" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585319279897" />
+    <state x="387" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585329247489" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585314333636">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -205,16 +216,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="312" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585319093346" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/MapReduce.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
