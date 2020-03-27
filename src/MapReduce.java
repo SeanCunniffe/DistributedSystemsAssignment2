@@ -24,16 +24,11 @@ public class MapReduce {
 
     /////////////////TESTING//////////////////////////////////////////////////////////////////////////
 
-    static LinkedList<File> files = new LinkedList<>();
-    static File test1 = new File("src/file1.txt");
-    static File test2 = new File("src/file2.txt");
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        files.add(test1);
-        files.add(test2);
-        LinkedList<String> fileText = new LinkedList<>();
+        LinkedList<File> files = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
         int numberOfThreads = 2;
         try {
@@ -42,11 +37,9 @@ public class MapReduce {
                 files.add(new File(args[i]));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            //System.out.println("No input arguments");
-            //System.exit(0);
-            /**
-             * commented out for testing
-             */
+            System.out.println("No input arguments");
+            System.exit(0);
+
         } catch (NumberFormatException e) {
             System.out.println("First argument must be a number");
             System.exit(0);
@@ -127,7 +120,6 @@ public class MapReduce {
             reduceTotal = System.nanoTime() - startReduce;
             System.out.println("reduce complete time: " + reduceTotal + " nanoseconds");
 
-            //  System.out.println(output);
         }
 
         // APPROACH #3: Distributed MapReduce
@@ -214,11 +206,9 @@ public class MapReduce {
             for(Future<?> f: futures){ // waits for all threads to finish
                 f.get(); // blocks future till all thread are finished
             }
-              System.out.println(output);
             futures.clear(); // for the next test
             reduceTotal2 = System.nanoTime() - startReduce2;
             System.out.println("reduce complete time: " + reduceTotal2 + " nanoseconds");
-            System.out.println(output);
         }
         System.out.println("\n********Results********");
         System.out.println("Difference between map 1 and map 2: " + (mapTotal - mapTotal2) +" nanoseconds");
@@ -249,9 +239,9 @@ public class MapReduce {
         output.put(word, reducedList);
     }
 
-    public static interface MapCallback<E, V> {
+    public interface MapCallback<E, V> {
 
-        public void mapDone(E key, List<V> values);
+        void mapDone(E key, List<V> values);
     }
 
     public static void map(String file, String contents, MapCallback<String, MappedItem> callback) {
@@ -263,9 +253,9 @@ public class MapReduce {
         callback.mapDone(file, results);
     }
 
-    public static interface ReduceCallback<E, K, V> {
+    public interface ReduceCallback<E, K, V> {
 
-        public void reduceDone(E e, Map<K,V> results);
+        void reduceDone(E e, Map<K, V> results);
     }
 
     public static void reduce(String word, List<String> list, ReduceCallback<String, String, Integer> callback) {
