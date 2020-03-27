@@ -89,17 +89,10 @@ public class MapReduce {
                 Map.Entry<String, String> entry = inputIter.next();
                 String file = entry.getKey();
                 String contents = entry.getValue();
-                Future f = pool.submit(() -> {
                     map(file, contents, mappedItems);
-                });
-                futures.add(f);
             }
-            for(Future f: futures){
-                f.get();
-            }
-            futures.clear();
-            // GROUP:
 
+            // GROUP:
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
 
             Iterator<MappedItem> mappedIter = mappedItems.iterator();
@@ -122,14 +115,9 @@ public class MapReduce {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 String word = entry.getKey();
                 List<String> list = entry.getValue();
-                Future f = pool.submit(()-> reduce(word, list, output));
-                futures.add(f);
+                reduce(word, list, output);
             }
-        for(Future<?> f: futures){ // waits for all threads to finish
-            f.get(); // blocks future till all thread are finished
-        }
             //  System.out.println(output);
-        futures.clear(); // for the next test
         }
 
         // APPROACH #3: Distributed MapReduce
