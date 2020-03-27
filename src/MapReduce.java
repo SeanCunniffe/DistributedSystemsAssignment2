@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class MapReduce {
+    private static Scanner x;
+    private static Scanner y;
+
 
     public static void main(String[] args) {
 
@@ -38,43 +38,45 @@ public class MapReduce {
         // INPUT:
         ///////////
 
+        try{
+            x = new Scanner(new File("C:\\Users\\Admin\\Desktop\\file1.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Cannot find txt file");
+
+        }
+
+        try{
+            y = new Scanner(new File("C:\\Users\\Admin\\Desktop\\file2.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Cannot find txt file");
+
+        }
+        String w = "";
+
+        while(x.hasNext()){
+            String a = x.next();
+            //System.out.println(a);
+            w = w + " " + a;
+
+        }
+
+        String z = "";
+
+        while(y.hasNext()){
+            String a = y.next();
+            //System.out.println(a);
+            z = z + " " + a;
+
+        }
+        System.out.println(w.length());
         Map<String, String> input = new HashMap<String, String>();
-        input.put("file1.txt", "foo foo bar cat dog dog");
-        input.put("file2.txt", "foo house cat cat dog");
+        input.put("file1.txt", w);
+        input.put("file2.txt", z);
         input.put("file3.txt", "foo foo foo bird");
 
-        // APPROACH #1: Brute force
-        {
-            Map<String, Map<String, Integer>> output = new HashMap<String, Map<String, Integer>>();
 
-            Iterator<Map.Entry<String, String>> inputIter = input.entrySet().iterator();
-            while(inputIter.hasNext()) {
-                Map.Entry<String, String> entry = inputIter.next();
-                String file = entry.getKey();
-                String contents = entry.getValue();
-
-                String[] words = contents.trim().split("\\s+");
-
-                for(String word : words) {
-
-                    Map<String, Integer> files = output.get(word);
-                    if (files == null) {
-                        files = new HashMap<String, Integer>();
-                        output.put(word, files);
-                    }
-
-                    Integer occurrences = files.remove(file);
-                    if (occurrences == null) {
-                        files.put(file, 1);
-                    } else {
-                        files.put(file, occurrences.intValue() + 1);
-                    }
-                }
-            }
-
-            // show me:
-            System.out.println(output);
-        }
 
 
         // APPROACH #2: MapReduce
@@ -122,7 +124,7 @@ public class MapReduce {
                 reduce(word, list, output);
             }
 
-            System.out.println(output);
+            //  System.out.println(output);
         }
 
 
@@ -302,3 +304,4 @@ public class MapReduce {
         }
     }
 }
+
