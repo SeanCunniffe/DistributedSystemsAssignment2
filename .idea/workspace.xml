@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="167a70bf-eaab-447b-8296-2e1c4d41d42c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MapReduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapReduce.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +30,20 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="MapReduce" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapReduce" />
+      <module name="DistributedSystemsAssignment2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MapReduce" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -67,7 +83,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -82,20 +100,36 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="22" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1585313885396" />
-    <state x="746" y="360" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585315244578">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="531" y="252" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585315520331">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="531" y="252" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1585313902275" />
+    <state x="531" y="252" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1585315520331" />
     <state x="746" y="360" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585315244578" />
-    <state x="367" y="0" key="CommitChangelistDialog2" timestamp="1585315362751">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="261" y="0" key="CommitChangelistDialog2" timestamp="1585317992681">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="261" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585314813607" />
+    <state x="261" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585317992681" />
     <state x="367" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585315362751" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1585314302556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585314302556" />
+    <state width="1323" height="171" key="GridCell.Tab.0.bottom" timestamp="1585317929303">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="171" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585317929303" />
+    <state width="1323" height="171" key="GridCell.Tab.0.center" timestamp="1585317929303">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="171" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1585317929303" />
+    <state width="1323" height="171" key="GridCell.Tab.0.left" timestamp="1585317929303">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="171" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1585317929303" />
+    <state width="1323" height="171" key="GridCell.Tab.0.right" timestamp="1585317929303">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="171" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1585317929303" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1585314203992">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-/*
-Buck loves vagina
- */
+
 
 public class MapReduce {
     private static Scanner x;
@@ -42,7 +40,7 @@ public class MapReduce {
         ///////////
 
         try{
-            x = new Scanner(new File("file1.txt"));
+            x = new Scanner(new File("src\\file1.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Cannot find txt file");
@@ -50,7 +48,7 @@ public class MapReduce {
         }
 
         try{
-            y = new Scanner(new File("file2.txt"));
+            y = new Scanner(new File("src\\file2.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Cannot find txt file");
@@ -89,7 +87,7 @@ public class MapReduce {
             // MAP:
 
             List<MappedItem> mappedItems = new LinkedList<MappedItem>();
-
+            long startMap = System.nanoTime();              //start time for map
             Iterator<Map.Entry<String, String>> inputIter = input.entrySet().iterator();
             while(inputIter.hasNext()) {
                 Map.Entry<String, String> entry = inputIter.next();
@@ -98,11 +96,13 @@ public class MapReduce {
 
                 map(file, contents, mappedItems);
             }
-
+            long mapTotal = System.nanoTime() - startMap;
+            System.out.println("mapping complete time: " + mapTotal/1000000 + " milliseconds");         //finish timer for map
             // GROUP:
 
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
 
+            long startGroup = System.nanoTime();            //start timer for group
             Iterator<MappedItem> mappedIter = mappedItems.iterator();
             while(mappedIter.hasNext()) {
                 MappedItem item = mappedIter.next();
@@ -115,10 +115,16 @@ public class MapReduce {
                 }
                 list.add(file);
             }
+            long groupTotal = System.nanoTime() - startGroup;               //finish timer for group
+            System.out.println("group complete time: " + groupTotal/1000000 + " milliseconds");
+            System.out.println("group complete time: " + groupTotal + " nanoseconds");
 
             // REDUCE:
 
             Iterator<Map.Entry<String, List<String>>> groupedIter = groupedItems.entrySet().iterator();
+
+            long startReduce = System.nanoTime();            //start timer for reduce
+
             while(groupedIter.hasNext()) {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 String word = entry.getKey();
@@ -127,8 +133,12 @@ public class MapReduce {
                 reduce(word, list, output);
             }
 
-            //  System.out.println(output);
+            //System.out.println(output);
+            long reduceTotal = System.nanoTime() - startReduce;               //finish timer for reduce
+            System.out.println("reduce complete time: " + reduceTotal/1000000 + " milliseconds");
         }
+
+
 
 
         // APPROACH #3: Distributed MapReduce
