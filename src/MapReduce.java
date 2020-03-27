@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.*;
 
 public class MapReduce {
     private static Scanner x;
@@ -29,12 +30,15 @@ public class MapReduce {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         files.add(test1);
         files.add(test2);
+        if(test1.exists() && test2.exists()){
+            System.out.println("test1 exist");
+        }
         LinkedList<String> fileText = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
-        int numberOfThreads;
+        int numberOfThreads = 2;
         try {
             numberOfThreads= Integer.parseInt(args[0]);
             for (int i = 1; i < args.length; i++) {
@@ -71,10 +75,9 @@ public class MapReduce {
         }
         input.put("file3.txt", "foo foo foo bird");
 
+        ExecutorService pool = Executors.newFixedThreadPool(numberOfThreads);
+        ArrayList<Future> futures = new ArrayList<>();
 
-
-
-        // APPROACH #2: MapReduce
         {
             Map<String, Map<String, Integer>> output = new HashMap<String, Map<String, Integer>>();
 
@@ -87,10 +90,15 @@ public class MapReduce {
                 Map.Entry<String, String> entry = inputIter.next();
                 String file = entry.getKey();
                 String contents = entry.getValue();
-
-                map(file, contents, mappedItems);
+                Future f = pool.submit(() -> {
+                    map(file, contents, mappedItems);
+                });
+                futures.add(f);
             }
-
+            for(Future f: futures){
+                f.get();
+            }
+            futures.clear();
             // GROUP:
 
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
@@ -115,13 +123,15 @@ public class MapReduce {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 String word = entry.getKey();
                 List<String> list = entry.getValue();
-
-                reduce(word, list, output);
+                Future f = pool.submit(()-> reduce(word, list, output));
+                futures.add(f);
             }
-
-            //  System.out.println(output);
+        for(Future<?> f: futures){ // waits for all threads to finish
+            f.get(); // blocks future till all thread are finished
         }
-
+            //  System.out.println(output);
+        futures.clear(); // for the next test
+        }
 
         // APPROACH #3: Distributed MapReduce
         {
@@ -145,28 +155,15 @@ public class MapReduce {
                 Map.Entry<String, String> entry = inputIter.next();
                 final String file = entry.getKey();
                 final String contents = entry.getValue();
-
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        map(file, contents, mapCallback);
-                    }
-                });
-                mapCluster.add(t);
-                t.start();
+                //removed creating thread, uses thread from pool
+                Future f = pool.submit(() -> map(file, contents, mapCallback));
+                futures.add(f);
             }
-
-            // wait for mapping phase to be over:
-            for(Thread t : mapCluster) {
-                try {
-                    t.join();
-                } catch(InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            for(Future<?> f: futures){
+                f.get();
             }
-
             // GROUP:
-
+            futures.clear();
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
 
             Iterator<MappedItem> mappedIter = mappedItems.iterator();
@@ -198,29 +195,20 @@ public class MapReduce {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 final String word = entry.getKey();
                 final List<String> list = entry.getValue();
-
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        reduce(word, list, reduceCallback);
-                    }
-                });
-                reduceCluster.add(t);
-                t.start();
+                //removed creating thead, using thread from thread pool
+                Future f = pool.submit(() -> reduce(word, list, reduceCallback));
+                futures.add(f);
             }
 
-            // wait for reducing phase to be over:
-            for(Thread t : reduceCluster) {
-                try {
-                    t.join();
-                } catch(InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            for(Future<?> f: futures){ // waits for all threads to finish
+                f.get(); // blocks future till all thread are finished
             }
-
-            System.out.println(output);
+              System.out.println(output);
+            futures.clear(); // for the next test
         }
+    System.exit(0);
     }
+
 
     public static void map(String file, String contents, List<MappedItem> mappedItems) {
         String[] words = contents.trim().split("\\s+");
@@ -273,6 +261,7 @@ public class MapReduce {
             }
         }
         callback.reduceDone(word, reducedList);
+
     }
 
     private static class MappedItem {
@@ -298,5 +287,6 @@ public class MapReduce {
             return "[\"" + word + "\",\"" + file + "\"]";
         }
     }
+
 }
 
