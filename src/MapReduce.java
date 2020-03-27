@@ -72,7 +72,6 @@ public class MapReduce {
             input.put(file.getName(),w);
             x.close();
         }
-        input.put("file3.txt", "foo foo foo bird");
 
         ExecutorService pool = Executors.newFixedThreadPool(numberOfThreads);
         ArrayList<Future> futures = new ArrayList<>();
@@ -276,4 +275,3 @@ public class MapReduce {
     }
 
 }
-

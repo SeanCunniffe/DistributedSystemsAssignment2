@@ -146,7 +146,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585331083214</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated">
+      <created>1585331962615</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1585331962615</updated>
+    </task>
+    <task id="LOCAL-00013" summary="updated">
+      <created>1585332181225</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1585332181225</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,31 +192,31 @@
     </state>
     <state x="531" y="252" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1585313902275" />
     <state x="746" y="360" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585315244578" />
-    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2" timestamp="1585331962064">
+    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2" timestamp="1585332180502">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="261" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585314813607" />
-    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585331962064" />
+    <state x="367" y="0" width="865" height="935" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585332180502" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1585314302556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585314302556" />
-    <state width="938" height="246" key="GridCell.Tab.0.bottom" timestamp="1585328994599">
+    <state width="938" height="246" key="GridCell.Tab.0.bottom" timestamp="1585332610280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585328994599" />
-    <state width="938" height="246" key="GridCell.Tab.0.center" timestamp="1585328994599">
+    <state width="938" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585332610280" />
+    <state width="938" height="246" key="GridCell.Tab.0.center" timestamp="1585332610280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="246" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585328994599" />
-    <state width="938" height="246" key="GridCell.Tab.0.left" timestamp="1585328994599">
+    <state width="938" height="246" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585332610280" />
+    <state width="938" height="246" key="GridCell.Tab.0.left" timestamp="1585332610280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="246" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585328994599" />
-    <state width="938" height="246" key="GridCell.Tab.0.right" timestamp="1585328994599">
+    <state width="938" height="246" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585332610280" />
+    <state width="938" height="246" key="GridCell.Tab.0.right" timestamp="1585332610280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="246" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585328994599" />
+    <state width="938" height="246" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585332610280" />
     <state width="938" height="348" key="GridCell.Tab.1.bottom" timestamp="1585328744009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
