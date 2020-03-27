@@ -68,9 +68,6 @@ public class MapReduce {
             input.put(file.getName(), w);
             x.close();
         }
-        input.put("file3.txt", "foo foo foo bird");
-
-
         // APPROACH #2: MapReduce
         long mapTotal;
         long groupTotal;
@@ -87,9 +84,7 @@ public class MapReduce {
                 Map.Entry<String, String> entry = inputIter.next();
                 String file = entry.getKey();
                 String contents = entry.getValue();
-
                 map(file, contents, mappedItems);
-
             }
             mapTotal = System.nanoTime() - startMap;
             System.out.println("mapping complete time: " + mapTotal + " nanoseconds");//finish timer for map
@@ -130,7 +125,6 @@ public class MapReduce {
 
             //  System.out.println(output);
         }
-
 
         // APPROACH #3: Distributed MapReduce
         long mapTotal2;
@@ -327,4 +321,3 @@ public class MapReduce {
         }
     }
 }
-
