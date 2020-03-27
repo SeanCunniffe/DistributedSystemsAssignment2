@@ -7,26 +7,11 @@ public class MapReduce {
     private static Scanner x;
 
     /**
-     * File[1] File[2] numOfThreadsInPool
-     * time the Mapping, Grouping and Reducing phases of the application
-     * use thread pool
-     * compare thread pool sizes
-     * compare file sizes
-     * compare number of files
-     */
-
-    /**
+     *
      * @param args
-     * args[0] int: number of threads
-     * args[1:x] String: file locations, x = number of files
-     * x = number of arguments-2 ... (first argument is a int and x is an index)
+     * @throws ExecutionException
+     * @throws InterruptedException
      */
-
-    /////////////////TESTING//////////////////////////////////////////////////////////////////////////
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         LinkedList<File> files = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
