@@ -15,7 +15,7 @@ public class MapReduce {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         LinkedList<File> files = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
-        int numberOfThreads = 2;
+        int numberOfThreads = 0;
         try {
             numberOfThreads= Integer.parseInt(args[0]);
             for (int i = 1; i < args.length; i++) {
@@ -30,7 +30,7 @@ public class MapReduce {
             System.exit(0);
         }
 
-        for (File file:files) {
+        for (File file:files) { // converts all text files to string
             try{
                 x = new Scanner(file);
             } catch (FileNotFoundException e) {
@@ -48,7 +48,9 @@ public class MapReduce {
             x.close();
         }
 
+        // creates a pool of thread the size of (numberOfThreads);
         ExecutorService pool = Executors.newFixedThreadPool(numberOfThreads);
+        // monitor each thread state, this is so we can print the output after all threads are finished
         ArrayList<Future> futures = new ArrayList<>();
 
         // APPROACH #2: MapReduce
@@ -136,10 +138,10 @@ public class MapReduce {
                 final String file = entry.getKey();
                 final String contents = entry.getValue();
                 //removed creating thread, uses thread from pool
-                Future f = pool.submit(() -> map(file, contents, mapCallback));
-                futures.add(f);
+                Future f = pool.submit(() -> map(file, contents, mapCallback)); // submit runnable to pool to be ran
+                futures.add(f); // add thread monitor to list
             }
-            for(Future<?> f: futures){
+            for(Future<?> f: futures){ //waits for all threads to return
                 f.get();
             }
 
@@ -147,7 +149,7 @@ public class MapReduce {
             System.out.println("mapping complete time: " + mapTotal2 + " nanoseconds");//finish timer for map
 
             // GROUP:
-            futures.clear();
+            futures.clear(); // clear monitors for next stage
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
 
             long startGroup2 = System.nanoTime();          //start timer for group
@@ -184,8 +186,8 @@ public class MapReduce {
                 final String word = entry.getKey();
                 final List<String> list = entry.getValue();
                 //removed creating thead, using thread from thread pool
-                Future f = pool.submit(() -> reduce(word, list, reduceCallback));
-                futures.add(f);
+                Future f = pool.submit(() -> reduce(word, list, reduceCallback)); //submit runnable to be ran in pool
+                futures.add(f); // add monitor to list
             }
 
             for(Future<?> f: futures){ // waits for all threads to finish
