@@ -26,7 +26,7 @@ public class MapReduce {
     static LinkedList<File> files = new LinkedList<>();
     static File test1 = new File("src/file1.txt");
     static File test2 = new File("src/file2.txt");
-    
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void main(String[] args) {
