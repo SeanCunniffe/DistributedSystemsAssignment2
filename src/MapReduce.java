@@ -36,24 +36,23 @@ public class MapReduce {
         Map<String, String> input = new HashMap<String, String>();
         int numberOfThreads;
         try {
-            numberOfThreads= Integer.parseInt(args[0]);
+            numberOfThreads = Integer.parseInt(args[0]);
             for (int i = 1; i < args.length; i++) {
                 files.add(new File(args[i]));
             }
-        }catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             //System.out.println("No input arguments");
             //System.exit(0);
             /**
              * commented out for testing
              */
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("First argument must be a number");
             System.exit(0);
         }
 
-        for (File file:files) {
-            try{
+        for (File file : files) {
+            try {
                 x = new Scanner(file);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -61,42 +60,46 @@ public class MapReduce {
             }
             String w = "";
 
-            while(x.hasNext()){
+            while (x.hasNext()) {
                 String a = x.next();
                 w = w + " " + a;
 
             }
-            input.put(file.getName(),w);
+            input.put(file.getName(), w);
             x.close();
         }
         input.put("file3.txt", "foo foo foo bird");
 
 
-
-
         // APPROACH #2: MapReduce
+        long mapTotal;
+        long groupTotal;
+        long reduceTotal;
         {
             Map<String, Map<String, Integer>> output = new HashMap<String, Map<String, Integer>>();
 
             // MAP:
-
+            System.out.println("********Approach #2: MapReduce********");
             List<MappedItem> mappedItems = new LinkedList<MappedItem>();
-
+            long startMap = System.nanoTime();            //start time for map
             Iterator<Map.Entry<String, String>> inputIter = input.entrySet().iterator();
-            while(inputIter.hasNext()) {
+            while (inputIter.hasNext()) {
                 Map.Entry<String, String> entry = inputIter.next();
                 String file = entry.getKey();
                 String contents = entry.getValue();
 
                 map(file, contents, mappedItems);
+
             }
+            mapTotal = System.nanoTime() - startMap;
+            System.out.println("mapping complete time: " + mapTotal + " nanoseconds");//finish timer for map
 
             // GROUP:
 
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
-
+            long startGroup = System.nanoTime();          //start timer for group
             Iterator<MappedItem> mappedIter = mappedItems.iterator();
-            while(mappedIter.hasNext()) {
+            while (mappedIter.hasNext()) {
                 MappedItem item = mappedIter.next();
                 String word = item.getWord();
                 String file = item.getFile();
@@ -107,28 +110,38 @@ public class MapReduce {
                 }
                 list.add(file);
             }
+            groupTotal = System.nanoTime() - startGroup;
+            System.out.println("group complete time: " + groupTotal + " nanoseconds");
+
 
             // REDUCE:
+            long startReduce = System.nanoTime();//start timer for reduce
 
             Iterator<Map.Entry<String, List<String>>> groupedIter = groupedItems.entrySet().iterator();
-            while(groupedIter.hasNext()) {
+            while (groupedIter.hasNext()) {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 String word = entry.getKey();
                 List<String> list = entry.getValue();
 
                 reduce(word, list, output);
             }
+            reduceTotal = System.nanoTime() - startReduce;
+            System.out.println("reduce complete time: " + reduceTotal + " nanoseconds");
 
             //  System.out.println(output);
         }
 
 
         // APPROACH #3: Distributed MapReduce
+        long mapTotal2;
+        long groupTotal2;
+        long reduceTotal2;
         {
+            System.out.println("\n********Approach #3: Distributed MapReduce********");
+
             final Map<String, Map<String, Integer>> output = new HashMap<String, Map<String, Integer>>();
 
             // MAP:
-
             final List<MappedItem> mappedItems = new LinkedList<MappedItem>();
 
             final MapCallback<String, MappedItem> mapCallback = new MapCallback<String, MappedItem>() {
@@ -140,8 +153,10 @@ public class MapReduce {
 
             List<Thread> mapCluster = new ArrayList<Thread>(input.size());
 
+            long startMap2 = System.nanoTime();            //start time for map
+
             Iterator<Map.Entry<String, String>> inputIter = input.entrySet().iterator();
-            while(inputIter.hasNext()) {
+            while (inputIter.hasNext()) {
                 Map.Entry<String, String> entry = inputIter.next();
                 final String file = entry.getKey();
                 final String contents = entry.getValue();
@@ -157,20 +172,24 @@ public class MapReduce {
             }
 
             // wait for mapping phase to be over:
-            for(Thread t : mapCluster) {
+            for (Thread t : mapCluster) {
                 try {
                     t.join();
-                } catch(InterruptedException e) {
+                } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
+
+            mapTotal2 = System.nanoTime() - startMap2;
+            System.out.println("mapping complete time: " + mapTotal2 + " nanoseconds");//finish timer for map
 
             // GROUP:
 
             Map<String, List<String>> groupedItems = new HashMap<String, List<String>>();
 
+            long startGroup2 = System.nanoTime();          //start timer for group
             Iterator<MappedItem> mappedIter = mappedItems.iterator();
-            while(mappedIter.hasNext()) {
+            while (mappedIter.hasNext()) {
                 MappedItem item = mappedIter.next();
                 String word = item.getWord();
                 String file = item.getFile();
@@ -181,8 +200,11 @@ public class MapReduce {
                 }
                 list.add(file);
             }
+            groupTotal2 = System.nanoTime() - startGroup2;
+            System.out.println("group complete time: " + groupTotal2 + " nanoseconds");
 
             // REDUCE:
+            long startReduce2 = System.nanoTime();//start timer for reduce
 
             final ReduceCallback<String, String, Integer> reduceCallback = new ReduceCallback<String, String, Integer>() {
                 @Override
@@ -194,7 +216,7 @@ public class MapReduce {
             List<Thread> reduceCluster = new ArrayList<Thread>(groupedItems.size());
 
             Iterator<Map.Entry<String, List<String>>> groupedIter = groupedItems.entrySet().iterator();
-            while(groupedIter.hasNext()) {
+            while (groupedIter.hasNext()) {
                 Map.Entry<String, List<String>> entry = groupedIter.next();
                 final String word = entry.getKey();
                 final List<String> list = entry.getValue();
@@ -210,16 +232,22 @@ public class MapReduce {
             }
 
             // wait for reducing phase to be over:
-            for(Thread t : reduceCluster) {
+            for (Thread t : reduceCluster) {
                 try {
                     t.join();
-                } catch(InterruptedException e) {
+                } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
-
+            reduceTotal2 = System.nanoTime() - startReduce2;
+            System.out.println("reduce complete time: " + reduceTotal2 + " nanoseconds");
             System.out.println(output);
         }
+        System.out.println("\n********Results********");
+        System.out.println("Difference between map 1 and map 2: " + (mapTotal - mapTotal2) +" nanoseconds");
+        System.out.println("Difference between group 1 and group 2: " + (groupTotal - groupTotal2) +" nanoseconds");
+        System.out.println("Difference between reduce 1 and reduce 2: " + (reduceTotal - reduceTotal2) +" nanoseconds");
+
     }
 
     public static void map(String file, String contents, List<MappedItem> mappedItems) {
