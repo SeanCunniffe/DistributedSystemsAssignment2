@@ -110,10 +110,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="initial code" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="614" y="115" key="CommitChangelistDialog2" timestamp="1585315099434">
+    <state x="614" y="115" key="CommitChangelistDialog2" timestamp="1585315129440">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585315099434" />
+    <state x="614" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585315129440" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1585315151489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585315151489" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1585315068426">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -142,9 +146,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="699" y="312" key="git4idea.merge.GitMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585314978415" />
-    <state x="609" y="312" key="git4idea.merge.GitPullDialog" timestamp="1585314920148">
+    <state x="609" y="312" key="git4idea.merge.GitPullDialog" timestamp="1585315170100">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="609" y="312" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585314920148" />
+    <state x="609" y="312" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585315170100" />
   </component>
 </project>
