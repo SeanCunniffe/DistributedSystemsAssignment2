@@ -39,7 +39,7 @@ public class MapReduce {
         ///////////
 
         try{
-            x = new Scanner(new File("C:\\Users\\Admin\\Desktop\\file1.txt"));
+            x = new Scanner(new File("C:\\eclipse assignments\\DistributedSystemsAssignment2\\src\\file1.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Cannot find txt file");
@@ -47,7 +47,7 @@ public class MapReduce {
         }
 
         try{
-            y = new Scanner(new File("C:\\Users\\Admin\\Desktop\\file2.txt"));
+            y = new Scanner(new File("C:\\eclipse assignments\\DistributedSystemsAssignment2\\src\\file2.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Cannot find txt file");
