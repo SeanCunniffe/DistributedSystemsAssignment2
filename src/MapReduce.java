@@ -1,82 +1,74 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-/*
-Buck loves vagina
- */
 
 public class MapReduce {
     private static Scanner x;
-    private static Scanner y;
 
+    /**
+     * File[1] File[2] numOfThreadsInPool
+     * time the Mapping, Grouping and Reducing phases of the application
+     * use thread pool
+     * compare thread pool sizes
+     * compare file sizes
+     * compare number of files
+     */
+
+    /**
+     * @param args
+     * args[0] int: number of threads
+     * args[1:x] String: file locations, x = number of files
+     * x = number of arguments-2 ... (first argument is a int and x is an index)
+     */
+
+    /////////////////TESTING//////////////////////////////////////////////////////////////////////////
+
+    static LinkedList<File> files = new LinkedList<>();
+    static File test1 = new File("src/file1.txt");
+    static File test2 = new File("src/file2.txt");
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void main(String[] args) {
-
-        // the problem:
-
-        // from here (INPUT)
-
-        // "file1.txt" => "foo foo bar cat dog dog"
-        // "file2.txt" => "foo house cat cat dog"
-        // "file3.txt" => "foo foo foo bird"
-
-        // we want to go to here (OUTPUT)
-
-        // "foo" => { "file1.txt" => 2, "file3.txt" => 3, "file2.txt" => 1 }
-        // "bar" => { "file1.txt" => 1 }
-        // "cat" => { "file2.txt" => 2, "file1.txt" => 1 }
-        // "dog" => { "file2.txt" => 1, "file1.txt" => 2 }
-        // "house" => { "file2.txt" => 1 }
-        // "bird" => { "file3.txt" => 1 }
-
-        // in plain English we want to
-
-        // Given a set of files with contents
-        // we want to index them by word
-        // so I can return all files that contain a given word
-        // together with the number of occurrences of that word
-        // without any sorting
-
-        ////////////
-        // INPUT:
-        ///////////
-
-        try{
-            x = new Scanner(new File("file1.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Cannot find txt file");
-
-        }
-
-        try{
-            y = new Scanner(new File("file2.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Cannot find txt file");
-
-        }
-        String w = "";
-
-        while(x.hasNext()){
-            String a = x.next();
-            //System.out.println(a);
-            w = w + " " + a;
-
-        }
-
-        String z = "";
-
-        while(y.hasNext()){
-            String a = y.next();
-            //System.out.println(a);
-            z = z + " " + a;
-
-        }
-        System.out.println(w.length());
+        files.add(test1);
+        files.add(test2);
+        LinkedList<String> fileText = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
-        input.put("file1.txt", w);
-        input.put("file2.txt", z);
+        int numberOfThreads;
+        try {
+            numberOfThreads= Integer.parseInt(args[0]);
+            for (int i = 1; i < args.length; i++) {
+                files.add(new File(args[i]));
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            //System.out.println("No input arguments");
+            //System.exit(0);
+            /**
+             * commented out for testing
+             */
+        }
+        catch(NumberFormatException e){
+            System.out.println("First argument must be a number");
+            System.exit(0);
+        }
+
+        for (File file:files) {
+            try{
+                x = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                System.out.println("Cannot find txt file");
+            }
+            String w = "";
+
+            while(x.hasNext()){
+                String a = x.next();
+                w = w + " " + a;
+
+            }
+            input.put(file.getName(),w);
+            x.close();
+        }
         input.put("file3.txt", "foo foo foo bird");
 
 
