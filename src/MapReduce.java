@@ -36,7 +36,6 @@ public class MapReduce {
         if(test1.exists() && test2.exists()){
             System.out.println("test1 exist");
         }
-        LinkedList<String> fileText = new LinkedList<>();
         Map<String, String> input = new HashMap<String, String>();
         int numberOfThreads = 2;
         try {
